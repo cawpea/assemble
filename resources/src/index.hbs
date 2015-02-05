@@ -1,8 +1,11 @@
----
-layout: layout.hbs
-title: Hello Assemble
----
 <main>
-<h1>Hello!! Assemble</h1>
-<p>ハロー！！アセンブル</p>
+    <h1>{{config.siteName}}</h1>
+    <hr>
+    <p>Hello World! JavaScript</p>
+    <hr>
+    <ul>
+      {{#each config.footerLinks}}
+        <li><a href="{{url}}">{{title}}</a></li>
+      {{/each}}
+    </ul>
 </main>
