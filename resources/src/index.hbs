@@ -2,14 +2,25 @@
 title: Top
 ---
 <main>
-  {{> header}}
-  <hr>
-  <p>Hello World!</p>
-  <hr>
-  <ul>
+    {{> header}}
+    <hr>
+    <p>Hello World!</p>
+    <hr>
+    <ul>
     {{#each config.footerLinks}}
       <li><a href="{{url}}">{{title}}</a></li>
     {{/each}}
-  </ul>
-  {{> footer}}
+    </ul>
+    {{#if develop}}
+    <p>this is develop.</p>
+    {{/if}}
+
+    {{#is filename "index.html"}}
+    {{filename}}
+    {{/is}}
+
+    {{hoge 'test'}}
+    {{myArray config.footerLinks}}
+
+    {{> footer}}
 </main>

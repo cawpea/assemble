@@ -30,6 +30,7 @@ module.exports = function(grunt) {
                     partials: '<%= variable.srcPath%>/partials/**/*.hbs',
                     assets: '<%= variable.buildPath%>/assets',
                     data: ['<%= variable.srcPath%>/data/config.yml'],
+                    helpers: ['<%= variable.srcPath%>/assets/js/custom-helper.js'],
                     develop: true,
                     release: false
                 },
