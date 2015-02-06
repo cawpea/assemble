@@ -1,11 +1,15 @@
+---
+title: Top
+---
 <main>
-    <h1>{{config.siteName}}</h1>
-    <hr>
-    <p>Hello World! JavaScript</p>
-    <hr>
-    <ul>
-      {{#each config.footerLinks}}
-        <li><a href="{{url}}">{{title}}</a></li>
-      {{/each}}
-    </ul>
+  {{> header}}
+  <hr>
+  <p>Hello World!</p>
+  <hr>
+  <ul>
+    {{#each config.footerLinks}}
+      <li><a href="{{url}}">{{title}}</a></li>
+    {{/each}}
+  </ul>
+  {{> footer}}
 </main>

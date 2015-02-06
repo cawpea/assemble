@@ -2,21 +2,52 @@ module.exports = function(grunt) {
     //config
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        variable: {
+            buildPath: 'resources/build',
+            releasePath: 'resources/release',
+            srcPath: 'resources/src'
+        },
         connect: {
           server: {
-            options: {base: 'resources/build'}
+            options: {
+                base: '<%= variable.buildPath%>',
+                port:9000
+            }
           }
+        },
+        copy: {
+                assets: {
+                    expand: true,
+                    cwd: '<%= variable.srcPath%>/assets',
+                    src: ['**', '!scss/**'], //sassファイルはbuildフォルダに含めない
+                    dest: '<%= variable.buildPath%>/assets'
+                }
         },
         assemble: {
             options: {
-                layoutdir: 'resources/src/layout',
-                data: ['resources/src/data/config.yml']
+                layout: '<%= variable.srcPath%>/partials/common.hbs',
+                partials: '<%= variable.srcPath%>/partials/**/*.hbs',
+                assets: '<%= variable.buildPath%>/assets',
+                data: ['<%= variable.srcPath%>/data/config.yml']
             },
             watch: {
                 expand: true,
-                cwd: 'resources/src',
+                cwd: '<%= variable.srcPath%>',
                 src: '*.hbs',
-                dest: '<%= connect.server.options.base %>'
+                dest: '<%= variable.buildPath%>'
+            }
+        },
+        compass: {
+            dist: {
+                options: {
+                    sassDir:'<%= variable.srcPath%>/assets/scss',
+                    cssDir:'<%= variable.buildPath%>/assets/css'
+                }
+            }
+        },
+        csslint: {
+            check: {
+                src: '<%= variable.buildPath%>/assets/css/*.css'
             }
         },
         watch: {
@@ -24,29 +55,12 @@ module.exports = function(grunt) {
                 livereload: true
             },
             assemble: {
-                files: ['resources/src/**/*.hbs'],
-                tasks: ['assemble']
+                files: ['<%= variable.srcPath%>/**'],
+                tasks: ['assemble', 'copy']
             },
             compass: {
-                files: ['resources/src/**/*.scss'],
+                files: ['<%= variable.srcPath%>/**/*.scss'],
                 tasks: ['compass', 'csslint', 'assemble']
-            },
-            data: {
-                files: ['resources/src/data/*.yml'],
-                tasks: ['assemble']
-            }
-        },
-        compass: {
-            dist: {
-                options: {
-                    sassDir:'resources/src/assets/scss',
-                    cssDir:'resources/build/assets/css'
-                }
-            }
-        },
-        csslint: {
-            check: {
-                src: 'build/css/*.css'
             }
         }
     });
@@ -56,6 +70,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-csslint');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('assemble');
 
     //regist
