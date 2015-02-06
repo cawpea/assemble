@@ -1,0 +1,31 @@
+{
+    "maxerr": 1000,
+    "indent": 2, // インデントは1タブ（2スペース）
+    "maxparams": 5, // 引数は最大で5まで
+    "maxdepth": 3, // ネストは３つまで
+    "maxstatements": 30, //  ステートメントは最大30まで
+    "maxcomplexity": 10, // 複雑度は最大10まで
+    "globals": { // グローバル変数として定義済とする変数
+        "jQuery": false,
+        "$": false
+    },
+    "browser": true, // ブランザオブジェクトの許可
+    "node": true, // nodeオブジェクトの許可
+    "bitwise": true, // ビット演算の禁止
+    "camelcase": true, // キャメル記法を強制
+    "curly": true, // ループや条件式での中括弧省略を禁止
+    "eqeqeq": true, // 厳密等価演算子を強制
+    "forin": true, // for in での hasOwnProperty を強制
+    "immed": false, // ()で囲わない即時関数を禁止
+    "latedef": "nofunc", // 変数宣言を先頭に纏めることを強制しない
+    "newcap": true, // コンストラクタの先頭大文字を強制
+    "noarg": true, // arguments.callee, arguments.caller を禁止
+    "noempty": true, // 空のブロックを警告
+    "nonew": true, // 変数に代入しないコンストラクタ呼び出しを禁止
+    "plusplus": false, // 単体の ++, -- を禁止
+    "undef": true, // var宣言無しの変数を禁止
+    "unused": true, // 使用されてない変数を警告
+    "strict": false, // ES5の厳密モードを強制
+    "trailing": true, // 文末のスペースを禁止
+    "expr": true // 代入や関数呼び出しを期待される箇所での式を許容
+}
