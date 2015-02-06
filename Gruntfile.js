@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 assets: {
                     expand: true,
                     cwd: '<%= variable.srcPath%>/assets',
-                    src: ['**', '!scss/**'], //sassファイルはbuildフォルダに含めない
+                    src: ['**', '!_*/**'], //先頭に"_"がついたフォルダはコピーしない
                     dest: '<%= variable.buildPath%>/assets'
                 }
         },
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                     partials: '<%= variable.srcPath%>/partials/**/*.hbs',
                     assets: '<%= variable.buildPath%>/assets',
                     data: ['<%= variable.srcPath%>/data/config.yml'],
-                    helpers: ['<%= variable.srcPath%>/assets/js/custom-helper.js'],
+                    helpers: ['<%= variable.srcPath%>/assets/_js/custom-helper.js'],
                     develop: true,
                     release: false
                 },
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         compass: {
             dist: {
                 options: {
-                    sassDir:'<%= variable.srcPath%>/assets/scss',
+                    sassDir:'<%= variable.srcPath%>/assets/_scss',
                     cssDir:'<%= variable.buildPath%>/assets/css'
                 }
             }
