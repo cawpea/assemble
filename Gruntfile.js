@@ -24,17 +24,37 @@ module.exports = function(grunt) {
                 }
         },
         assemble: {
-            options: {
-                layout: '<%= variable.srcPath%>/partials/common.hbs',
-                partials: '<%= variable.srcPath%>/partials/**/*.hbs',
-                assets: '<%= variable.buildPath%>/assets',
-                data: ['<%= variable.srcPath%>/data/config.yml']
+            develop: {
+                options: {
+                    layout: '<%= variable.srcPath%>/partials/common.hbs',
+                    partials: '<%= variable.srcPath%>/partials/**/*.hbs',
+                    assets: '<%= variable.buildPath%>/assets',
+                    data: ['<%= variable.srcPath%>/data/config.yml'],
+                    develop: true,
+                    release: false
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= variable.srcPath%>',
+                    src: '*.hbs',
+                    dest: '<%= variable.buildPath%>'
+                }]
             },
-            watch: {
-                expand: true,
-                cwd: '<%= variable.srcPath%>',
-                src: '*.hbs',
-                dest: '<%= variable.buildPath%>'
+            release: {
+                options: {
+                    layout: '<%= variable.srcPath%>/partials/common.hbs',
+                    partials: '<%= variable.srcPath%>/partials/**/*.hbs',
+                    assets: '<%= variable.buildPath%>/assets',
+                    data: ['<%= variable.srcPath%>/data/config.yml'],
+                    develop: false,
+                    release: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= variable.srcPath%>',
+                    src: '*.hbs',
+                    dest: '<%= variable.buildPath%>'
+                }]
             }
         },
         compass: {
@@ -56,11 +76,11 @@ module.exports = function(grunt) {
             },
             assemble: {
                 files: ['<%= variable.srcPath%>/**'],
-                tasks: ['assemble', 'copy']
+                tasks: ['assemble:develop', 'copy']
             },
             compass: {
                 files: ['<%= variable.srcPath%>/**/*.scss'],
-                tasks: ['compass', 'csslint', 'assemble']
+                tasks: ['compass', 'csslint', 'assemble:develop']
             }
         }
     });
@@ -74,5 +94,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('assemble');
 
     //regist
+    grunt.registerTask('build:develop', ['compass', 'csslint', 'assemble:develop', 'copy']);
+    grunt.registerTask('build:release', ['compass', 'csslint', 'assemble:release', 'copy']);
     grunt.registerTask('default', ['connect', 'watch']);
 };
