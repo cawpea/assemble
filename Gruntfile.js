@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 assets: {
                     expand: true,
                     cwd: '<%= variable.srcPath%>/assets',
-                    src: ['**', '!_*/**'], //先頭に"_"がついたフォルダはコピーしない
+                    src: ['**', '!_*/**'],
                     dest: '<%= variable.buildPath%>/assets'
                 }
         },
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            files: ['<%= variable.buildPath%>/**/*.js'],
+            files: ['<%= variable.buildPath%>/**/*.js', '!<%= variable.buildPath%>/**/jquery*.js'],
             options: {
                 jshintrc: '<%= variable.srcPath%>/assets/_plugin/jshint.json',
                 force: true
@@ -84,15 +84,14 @@ module.exports = function(grunt) {
             },
             compass: {
                 files: ['<%= variable.srcPath%>/**/*.scss'],
-                tasks: ['compass', 'csslint']
+                tasks: ['compass']
             },
             js: {
-                files: ['<%= variable.srcPath%>/**/*.js'],
-                tasks: ['jshint']
+                files: ['<%= variable.srcPath%>/**/*.js']
             },
             assemble: {
                 files: ['<%= variable.srcPath%>/**'],
-                tasks: ['assemble:develop', 'copy']
+                tasks: ['assemble:develop', 'copy', 'csslint', 'jshint']
             }
         }
     });
@@ -103,11 +102,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-csslint');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    //grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('assemble');
 
     //regist
-    grunt.registerTask('build:develop', ['compass', 'csslint', 'jshint', 'assemble:develop', 'copy']);
-    grunt.registerTask('build:release', ['compass', 'csslint', 'jshint', 'assemble:release', 'copy']);
+    grunt.registerTask('build:develop', ['compass', 'assemble:develop', 'copy', 'csslint', 'jshint']);
+    grunt.registerTask('build:release', ['compass', 'assemble:release', 'copy', 'csslint', 'jshint']);
     grunt.registerTask('default', ['connect', 'watch']);
 };

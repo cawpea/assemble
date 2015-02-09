@@ -1,6 +1,6 @@
 {
     "maxerr": 1000,
-    "indent": 2, // インデントは1タブ（2スペース）
+    "indent": 4, // インデントは1タブ（4スペース）
     "maxparams": 5, // 引数は最大で5まで
     "maxdepth": 3, // ネストは３つまで
     "maxstatements": 30, //  ステートメントは最大30まで
@@ -9,7 +9,7 @@
         "jQuery": false,
         "$": false
     },
-    "browser": true, // ブランザオブジェクトの許可
+    "browser": true, // ブラウザオブジェクトの許可
     "node": true, // nodeオブジェクトの許可
     "bitwise": true, // ビット演算の禁止
     "camelcase": true, // キャメル記法を強制
