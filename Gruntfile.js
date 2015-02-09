@@ -19,17 +19,17 @@ module.exports = function(grunt) {
                 assets: {
                     expand: true,
                     cwd: '<%= variable.srcPath%>/assets',
-                    src: ['**', '!_*/**'],
+                    src: ['**', '!_**/**'],
                     dest: '<%= variable.buildPath%>/assets'
                 }
         },
         assemble: {
             develop: {
                 options: {
-                    layout: '<%= variable.srcPath%>/partials/common.hbs',
-                    partials: '<%= variable.srcPath%>/partials/**/*.hbs',
+                    layout: '<%= variable.srcPath%>/_partials/common.hbs',
+                    partials: '<%= variable.srcPath%>/_partials/**/*.hbs',
                     assets: '<%= variable.buildPath%>/assets',
-                    data: ['<%= variable.srcPath%>/data/config.yml'],
+                    data: ['<%= variable.srcPath%>/_data/config.json'],
                     helpers: ['<%= variable.srcPath%>/assets/_plugin/custom-helper.js'],
                     develop: true,
                     release: false
@@ -37,16 +37,16 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= variable.srcPath%>',
-                    src: '*.hbs',
+                    src: ['**/*.hbs', '!_**/*.hbs'],
                     dest: '<%= variable.buildPath%>'
                 }]
             },
             release: {
                 options: {
-                    layout: '<%= variable.srcPath%>/partials/common.hbs',
-                    partials: '<%= variable.srcPath%>/partials/**/*.hbs',
+                    layout: '<%= variable.srcPath%>/_partials/common.hbs',
+                    partials: '<%= variable.srcPath%>/_partials/**/*.hbs',
                     assets: '<%= variable.buildPath%>/assets',
-                    data: ['<%= variable.srcPath%>/data/config.yml'],
+                    data: ['<%= variable.srcPath%>/_data/config.json'],
                     develop: false,
                     release: true
                 },

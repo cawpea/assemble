@@ -1,0 +1,52 @@
+{
+    "siteName": "Assemble Sample Site",
+    "siteMenu": [
+        {
+            "title": "トップ",
+            "url": "/"
+        },
+        {
+            "title": "サービス内容",
+            "url": "/pages/service.html"
+        },
+        {
+            "title": "会社案内",
+            "url": "/pages/company.html"
+        },
+        {
+            "title": "お問い合わせ",
+            "url": "/pages/contact.html"
+        }
+    ],
+    "topics": [
+        {
+            "post_date": "2015/01/05",
+            "head": "オフィス移転しました。",
+            "body": "オフィスを富ヶ谷から渋谷へ移転しました。"
+        },
+        {
+            "post_date": "2015/01/01",
+            "head": "新年のご挨拶",
+            "body": "あけましておめでとうございます。\n 今年もよろしくお願い致します。"
+        },
+        {
+            "post_date": "2014/12/31",
+            "head": "さよなら2014",
+            "body": "今年も大変お世話になりました。来年もよろしくお願い致します。"
+        }
+    ],
+    "service": [
+        {
+            "name": "サービス１",
+            "price": "20000"
+        },
+        {
+            "name": "サービス２",
+            "price": "10000"
+        },
+        {
+            "name": "サービス３",
+            "price": "5000"
+        }
+    ]
+}

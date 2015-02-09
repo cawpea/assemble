@@ -1,0 +1,12 @@
+siteName: Assemble site
+footerLinks:
+  - title: CodeGrid
+    url: http://www.codegrid.net/
+  - title: github repository
+    url: https://github.com/pxgrid/codegrid-assemble
+  - title: PixelGrid
+    url: http://www.pxgrid.com/
+  - title: Leihauoli
+    url: http://www.leihauoli.com/
+  - title: ABC
+    url: http://www.abc.com/

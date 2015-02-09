@@ -1,0 +1,20 @@
+---
+title: Top
+---
+{{> header}}
+<main>
+    <section>
+        <h2>サービス内容</h2>
+        {{#each config.service}}
+            <article>
+                <h3>{{name}}</h3>
+                <p>{{price}}</p>
+            </article>
+        {{/each}}
+    </section>
+
+    {{#is filename "index.html"}}
+    <p>{{filename}}</p>
+    {{/is}}
+</main>
+{{> footer}}

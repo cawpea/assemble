@@ -1,29 +1,24 @@
 ---
 title: Top
 ---
+{{> header}}
 <main>
-    {{> header}}
-    <hr>
-    <p>Hello World!</p>
-    <hr>
-    <ul>
-    {{#each config.footerLinks}}
-      <li><a href="{{url}}">{{title}}</a></li>
-    {{/each}}
-    </ul>
-    {{#if develop}}
-    <p>this is develop.</p>
-    {{/if}}
+    <header>
+        <img src="http://placeimg.com/600/280/arch" alt="sample画像">
+    </header>
+    <section>
+        <h2>Topics</h2>
+        {{#each config.topics}}
+        <article>
+            <h3>{{head}}</h3>
+            <time>{{post_date}}</time>
+            <p>{{body}}</p>
+        </article>
+        {{/each}}
+    </section>
 
     {{#is filename "index.html"}}
-    {{filename}}
+    <p>{{filename}}</p>
     {{/is}}
-
-    <p>
-    {{hoge 'test'}}
-    </p>
-    <p>
-    {{myArray config.footerLinks}}
-    </p>
-    {{> footer}}
 </main>
+{{> footer}}
